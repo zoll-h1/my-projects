@@ -1,11 +1,18 @@
 from fastapi import FastAPI
-from app.routers import tasks # Импортируем наш роутер из соседней папки
-    
-app = FastAPI(title="LifeOS API", version="0.2.0")
+#  Импортируем создание таблицы
+from app.database import engine, Base
+# Имопртируем наш роутер
+from app.routers import task_router
 
-# Регистрируем роутер
-# Все пути из tasks.py добавятся в приложение
-app.include_router(tasks.router)
+# 1. Создаем таблицы в базе данных(если их нет)
+# При запуске этот код посмотрит на все модели и создаст файл lifos.db
+Base.metadata.create_all(bind=engine)
+
+app = FastAPI(title="LIfeOS")
+
+# 2.Подключаем роутер к приложению
+app.include_router(task_router.router)
+
 @app.get("/")
-async def root():
-    return {"message": "Welcome ot LifeOS API Sructure"}
+def root():
+    return {"message": "Welcome to LifeOS"}
