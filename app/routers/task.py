@@ -11,8 +11,8 @@ from sqlalchemy.orm import Session
 
 # Import our blanks
 from app.database import get_db          # Функция дающая сессию 
-from app.models import task_model as models    # Таблицы (Алиас models для удобства)
-from app.schemas import task_schemas as schemas  # Схемы (Алиас schemas)
+from app.models import task as models    # Таблицы (Алиас models для удобства)
+from app.schemas import task as schemas  # Схемы (Алиас schemas)
 
 # Создаем роутер.
 # prefix="/tasks" - значит все пути будут начинаться с /tasks
