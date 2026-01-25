@@ -8,21 +8,19 @@ from app.database import Base
 
 # Создаем класс , который берет импортированный
 class Task(Base):
-    # 3. Название таблицы в базе данных.
-    # Именно так она будет называться в файле lifeos.db
+    # 3. Название таблицы в базе данных
     __tablename__ = "tasks"
 
     # 4. Колонки (Поля таблицы)
 
     # id: Уникальный номер. primary_key=True значит "это главный идентификатор"
-    # index=True создает "Оглавление", чотбы поиск по ID был мгновенным.
     id = Column(Integer, primary_key=True, index=True) 
 
 # title : Заголов задачи.
     title = Column(String, index=True)
 
 # description: Описание, nullable=True значит "Может быть пустым
-# Если мы не пришлем описание , база не выдаст ошибку , а запишет NULL
+
     description = Column(String, nullable=True)
 
 # is_completet: Выполено или нет.
